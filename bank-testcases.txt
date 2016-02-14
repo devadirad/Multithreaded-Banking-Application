@@ -1,0 +1,140 @@
+1) Running the client without the server running
+
+./client localhost
+
+Output - 
+Can't connect, retrying....
+===============================================================
+
+2) Running the client without passing the server name 
+
+./client 
+
+Output - 
+enter the server name as a argument
+===============================================================
+
+3)Incorrect command in client 
+./server , ./client localhost
+ create acc
+
+Output - 
+Message from server:  Error...please enter a valid command.
+
+===============================================================
+4) doing any operation before starting the session
+.server , ./client localhost
+debit 1000
+
+Output -
+Message from server:  Please start a session first.
+
+===============================================================
+
+5) Working on an account that doesn't exist
+./server ./client localhost
+start abc
+
+Output - 
+Account does not exist, can't start.
+===============================================================
+
+6) Passing incorrect arguments to commands
+./server ./client localhost
+
+open abcd
+start abcd
+balance randomarg
+
+Output - 
+
+Message from server:  Account creation successful
+Message from server:  Account started!
+Message from server:  Account balance=     0.00 
+===============================================================
+
+7) Opening existing accounts
+./server ./client localhost
+
+open abcd
+open abcd
+
+Output - 
+Message from server:  Account creation successful
+Message from server:  Account exists! Unsuccessful.
+===============================================================
+
+8) Debiting more than balance
+./server ./client localhost
+
+open abcd
+start abcd
+debit 1000
+
+Output - 
+
+Message from server:  Account creation successful
+
+Starting session for account 0!
+
+Message from server:  There is not enough balance to debit this amount.
+===============================================================
+
+9) Trying to close a session not opened by the client 
+
+./server ./client localhost
+
+finish abcd 
+Output -
+Message from server:  Please start a session first.
+
+===============================================================
+
+10)Starting two different accounts
+
+./server ./client localhost
+open abcd
+open pqrs
+start abcd
+start prqs
+
+Output - 
+Message from server:  Account creation successful
+
+Message from server:  Account creation successful
+
+Starting session for account 0!
+
+Message from server:  Cannot start new account until this session is finished
+
+===============================================================
+
+11) Opening different account when client is in session
+
+./server ./client localhost
+open abcd
+start abcd
+
+open pqrs
+
+Output - 
+Message from server:  Account creation successful
+Starting session for account 0!
+Message from server:  Cannot open new account until this session is finished
+
+===============================================================
+
+12) Starting a session and closing the client before finishing it
+
+./server ./client localhost
+open acc
+Message from server:  Account creation successful
+
+start bcc
+Message from server:  Account started!
+
+^C
+Exititing client abruptly.. finishing started session
+Message from server:  Session finished.
+
+

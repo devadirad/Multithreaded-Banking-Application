@@ -1,0 +1,25 @@
+Testplan -
+
+Checking proper arguments for client 
+
+Checking proper commands entered by client
+
+Checking proper order of commands (eg. trying to start, credit or debit without opening a account)
+
+Trying to work on account that doesnt exist 
+
+Trying to open accounts that already exist
+
+Trying to finish a session opened by other client
+
+Trying to start a session without closing the current one
+
+Opening an account when in session 
+
+Starting an session and client closed without finishing the session
+
+Debiting more than balance 
+
+Going over 20 accounts
+
+
